@@ -22,7 +22,7 @@ class PostViewController: UIViewController {
         let imageData = image.jpegData(compressionQuality: 0.75)
         //画像と投稿データの保存場所を定義する
         let postRef = Firestore.firestore().collection(Const.PostPath).document()
-        let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postRef.documentID + ".lpg")
+        let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postRef.documentID + ".jpg")
         //HUDで投稿処理中の表示を開始
         SVProgressHUD.show()
         //Storageに画像をアップロードする
@@ -50,8 +50,9 @@ class PostViewController: UIViewController {
     
     //キャンセルボタンをタップされた時に呼ばれるメソッド
     @IBAction func handleCancelButton(_ sender: Any) {
+        // 加工画面に戻る
+               self.dismiss(animated: true, completion: nil)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
